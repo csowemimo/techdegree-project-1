@@ -94,11 +94,15 @@ function printQuote()
 
 
   document.getElementById('quote-box').innerHTML = quoteString;
+  document.addEventListener("click", function(){
+    document.body.style.backgroundColor = getBackgroundColor();
+  });
+
 }
 
 function getBackgroundColor()
 {
-  let randomNumber = Math.floor(Math.random() * 4);
+  let randomNumber = Math.floor(Math.random() * 5);
   let hex;
 
   if(randomNumber === 0)
@@ -112,6 +116,10 @@ function getBackgroundColor()
   else if(randomNumber === 2)
   {
     hex = '#5c36b5';
+  }
+  else if(randomNumber === 3)
+  {
+    hex = '#366fb5';
   }
   else
   {
@@ -127,6 +135,3 @@ When the button to "show another quote" is clicked, it will call getRandomQuote 
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-document.addEventListener("click", function(){
-  document.body.style.backgroundColor = getBackgroundColor();
-});
