@@ -102,7 +102,6 @@ function printQuote()
 
 function getBackgroundColor()
 {
-  console.log("here");
   let hex = '';
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
