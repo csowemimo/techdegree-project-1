@@ -58,7 +58,7 @@ to the function that calls it.
 function getRandomQuote(array)
 {
   let randomNumber = Math.floor(Math.random() * quotes.length);
-  return randomNumber;
+  return quotes[randomNumber];
 }
 
 
@@ -70,61 +70,45 @@ a missing property in the object, the string concatenation will skip over it.
 ***/
 function printQuote()
 {
-  let quoteNumber = getRandomQuote(quotes);
+  let quoteObject = getRandomQuote(quotes);
   let quoteString = "";
 
-  quoteString += '<p class="quote">' + quotes[quoteNumber].quote + '</p>';
-  quoteString += '<p class="source">' + quotes[quoteNumber].source;
+  quoteString += '<p class="quote">' + quoteObject.quote + '</p>';
+  quoteString += '<p class="source">' + quoteObject.source;
 
-  if(quotes[quoteNumber].citation)
+  if(quoteObject.citation)
   {
-    quoteString += '<span class="citation">' + quotes[quoteNumber].citation + '</span>';
+    quoteString += '<span class="citation">' + quoteObject.citation + '</span>';
   }
 
-  if(quotes[quoteNumber].year)
+  if(quoteObject.year)
   {
-    quoteString += '<span class="year">' + quotes[quoteNumber].year + '</span>';
+    quoteString += '<span class="year">' + quoteObject.year + '</span>';
   }
 
-  if(quotes[quoteNumber].tags)
+  if(quoteObject.tags)
   {
-    quoteString += '<span class="year">' + quotes[quoteNumber].tags + '</span>';
+    quoteString += '<span class="year">' + quoteObject.tags + '</span>';
   }
     quoteString += "</p>";
 
 
   document.getElementById('quote-box').innerHTML = quoteString;
-  document.addEventListener("click", function(){
-    document.body.style.backgroundColor = getBackgroundColor();
-  });
 
+  document.addEventListener("click", function(){
+    document.body.style.backgroundColor = setInterval(getBackgroundColor,5000)
+  });
 }
 
 function getBackgroundColor()
 {
-  let randomNumber = Math.floor(Math.random() * 5);
-  let hex;
+  console.log("here");
+  let hex = '';
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
 
-  if(randomNumber === 0)
-  {
-    hex = '#8fb536';
-  }
-  else if(randomNumber === 1)
-  {
-    hex = '#36b55c';
-  }
-  else if(randomNumber === 2)
-  {
-    hex = '#5c36b5';
-  }
-  else if(randomNumber === 3)
-  {
-    hex = '#366fb5';
-  }
-  else
-  {
-    hex = '#b5368f';
-  }
+  hex += 'rgb(' + r + ',' + g + ',' + b + ')';
 
   return hex;
 }
@@ -134,4 +118,6 @@ function getBackgroundColor()
 When the button to "show another quote" is clicked, it will call getRandomQuote to get another quote number.
 ***/
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener('click', function() {
+  setInterval(printQuote, 5000)
+}, false);
