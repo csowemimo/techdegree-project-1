@@ -124,5 +124,5 @@ function getBackgroundColor()
 When the button to "show another quote" is clicked, it will call getRandomQuote to get another quote number.
 ***/
 
-document.getElementById('loadQuote').addEventListener('click', printQuote());
-setInterval(printQuote,5000);
+document.getElementById('loadQuote').addEventListener('click', printQuote)
+{setInterval(printQuote,5000)};
