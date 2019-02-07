@@ -95,9 +95,16 @@ function printQuote()
 
   document.getElementById('quote-box').innerHTML = quoteString;
 
-  document.addEventListener("click", function(){
-    document.body.style.backgroundColor = setInterval(getBackgroundColor,5000)
-  });
+/*  let hex = '';
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+
+  hex += 'rgb(' + r + ',' + g + ',' + b + ')';*/
+
+document.querySelector('body').style.backgroundColor = getBackgroundColor();
+
+
 }
 
 function getBackgroundColor()
@@ -117,6 +124,5 @@ function getBackgroundColor()
 When the button to "show another quote" is clicked, it will call getRandomQuote to get another quote number.
 ***/
 
-document.getElementById('loadQuote').addEventListener('click', function() {
-  setInterval(printQuote, 5000)
-}, false);
+document.getElementById('loadQuote').addEventListener('click', printQuote())
+{setInterval(printQuote,5000)};
